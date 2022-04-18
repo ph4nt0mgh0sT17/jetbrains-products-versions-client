@@ -1,0 +1,122 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModels="clr-namespace:JetBrainsProductsVersionsClient.ViewModels"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:fa="http://schemas.fontawesome.io/icons/"
+                    mc:Ignorable="d"
+                    d:DataContext="{d:DesignInstance viewModels:ProductDetailViewModel}">
+
+    <DataTemplate x:Key="Desktop_Layout">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0"
+                        Orientation="Vertical">
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="7*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Code:" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.Code}" TextWrapping="WrapWithOverflow" />
+                </Grid>
+
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="7*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Product family name:" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.ProductFamilyName}" TextWrapping="WrapWithOverflow" />
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Column="1"
+                        Orientation="Vertical">
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="7*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Description:" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.Description}" TextWrapping="WrapWithOverflow" />
+                </Grid>
+
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="7*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Is for sale:" TextWrapping="WrapWithOverflow" />
+                    <fa:FontAwesome
+                        Visibility="{Binding Path=Product.IsForSale, Converter={StaticResource BoolToVisibilityConverter}}"
+                        HorizontalAlignment="Left"
+                        Icon="CheckCircle"
+                        Foreground="Green"
+                        Grid.Column="1" />
+                    <fa:FontAwesome
+                        Visibility="{Binding Path=Product.IsForSale, Converter={StaticResource ReversedBoolToVisibilityConverter}}"
+                        HorizontalAlignment="Left"
+                        Icon="TimesCircle"
+                        Foreground="Red"
+                        Grid.Column="1" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="Mobile_Layout">
+        <Grid>
+            <StackPanel
+                Orientation="Vertical">
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Code:" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.Code}" TextWrapping="WrapWithOverflow" />
+                </Grid>
+
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Product family name:" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.ProductFamilyName}" TextWrapping="WrapWithOverflow" />
+                </Grid>
+
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Description:" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.Description}" TextWrapping="WrapWithOverflow" />
+                </Grid>
+
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Is for sale:" TextWrapping="WrapWithOverflow" />
+                    <fa:FontAwesome
+                        Visibility="{Binding Path=Product.IsForSale, Converter={StaticResource BoolToVisibilityConverter}}"
+                        HorizontalAlignment="Left"
+                        Icon="CheckCircle"
+                        Foreground="Green"
+                        Grid.Column="1" />
+                    <fa:FontAwesome
+                        Visibility="{Binding Path=Product.IsForSale, Converter={StaticResource ReversedBoolToVisibilityConverter}}"
+                        HorizontalAlignment="Left"
+                        Icon="TimesCircle"
+                        Foreground="Red"
+                        Grid.Column="1" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

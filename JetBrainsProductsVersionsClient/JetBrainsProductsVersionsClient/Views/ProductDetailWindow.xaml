@@ -1,0 +1,122 @@
+﻿<Window x:Class="JetBrainsProductsVersionsClient.Views.ProductDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:JetBrainsProductsVersionsClient.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewModels="clr-namespace:JetBrainsProductsVersionsClient.ViewModels"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:ProductDetailViewModel}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="ProductDetailWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+        <materialDesign:Card Grid.Row="0" Padding="10" Margin="16">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="{Binding Path = Product.Name}"
+                           FontSize="25" />
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="- Product detail"
+                           FontSize="25" />
+            </StackPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="1" Padding="10" Margin="16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <ContentControl Grid.Row="0" Content="{Binding}" FontSize="15">
+                    <ContentControl.Style>
+                        <Style TargetType="ContentControl">
+                            <Setter Property="ContentTemplate" Value="{StaticResource Desktop_Layout}" />
+
+                            <Style.Triggers>
+                                <DataTrigger
+                                    Binding="{
+                                        Binding Path=ActualWidth, 
+                                        RelativeSource={RelativeSource AncestorType=Window}, 
+                                        Converter={StaticResource IsLessThanOrEqualToConverter}, 
+                                        ConverterParameter=600
+                                    }"
+                                    Value="True">
+                                    <Setter Property="ContentTemplate" Value="{StaticResource Mobile_Layout}" />
+                                </DataTrigger>
+
+                                <DataTrigger
+                                    Binding="{
+                                        Binding Path=ActualWidth, 
+                                        RelativeSource={RelativeSource AncestorType=Window}, 
+                                        Converter={StaticResource IsGreaterThanOrEqualToConverter}, 
+                                        ConverterParameter=601
+                                    }"
+                                    Value="True">
+                                    <Setter Property="ContentTemplate" Value="{StaticResource Desktop_Layout}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentControl.Style>
+                </ContentControl>
+                <materialDesign:Card Grid.Row="1" Padding="10" Margin="16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                            <TextBlock  FontSize="25" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" Text="Releases" />
+                            <Separator />
+                        </StackPanel>
+                        
+                        <ListView Grid.Row="1" ItemsSource="{Binding Path=Product.Releases}"
+                                  ScrollViewer.CanContentScroll="True"
+                                  HorizontalContentAlignment="Stretch">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                            <TextBlock Margin="0,0,10,0"
+                                                       Text="{
+                                                    Binding Path=ViewModel.Product.Name,
+                                                    RelativeSource={RelativeSource FindAncestor, AncestorType=Window}
+                                               }" />
+                                            <TextBlock Margin="0,0,10,0"
+                                                       Text="-" />
+                                            <TextBlock Margin="0,0,10,0"
+                                                       Text="{Binding Path=Type}" />
+                                            <TextBlock Margin="0,0,10,0"
+                                                       Text="-" />
+                                            <TextBlock Margin="0,0,10,0"
+                                                       Text="{Binding Path=Date}" />
+                                            <TextBlock Text="(" />
+                                            <TextBlock Text="{Binding Path=Version}" />
+                                            <TextBlock Text=")" />
+                                        </StackPanel>
+
+                                        <Button Style="{StaticResource PrimaryButton}"
+                                                HorizontalAlignment="Right"
+                                                Content="Open release detail" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
