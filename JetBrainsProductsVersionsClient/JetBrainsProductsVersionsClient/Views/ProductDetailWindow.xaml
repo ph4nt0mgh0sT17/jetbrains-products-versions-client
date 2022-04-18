@@ -17,7 +17,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="ProductDetailWindow" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -181,6 +181,76 @@
                                                                  Margin="16" Background="Green">
                                                 <TextBlock TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke"
                                                            Text="{Binding Path=Name}" />
+                                            </materialDesign:Card>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card Padding="10"
+                                         Margin="16">
+                        <Grid>
+                            <StackPanel Margin="0,0,0,10">
+                                <TextBlock FontSize="25" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"
+                                           Text="Distributions" />
+                                <Separator />
+
+                                <ItemsControl ItemsSource="{Binding Path=Product.Distributions}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"
+                                                       HorizontalAlignment="Center"
+                                                       Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}}" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:Card Padding="10"
+                                                                 Margin="16" Background="Green">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <TextBlock TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke"
+                                                               Margin="0,0,10,0"
+                                                               Text="{Binding Path=Value.Name}" />
+
+                                                    <TextBlock TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke"
+                                                               Text="(" />
+                                                    <TextBlock TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke"
+                                                               Text="{Binding Path=Value.Extension}" />
+                                                    <TextBlock TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke"
+                                                               Text=")" />
+                                                </StackPanel>
+                                            </materialDesign:Card>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card Padding="10"
+                                         Margin="16">
+                        <Grid>
+                            <StackPanel Margin="0,0,0,10">
+                                <TextBlock FontSize="25" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"
+                                           Text="Categories" />
+                                <Separator />
+
+                                <ItemsControl ItemsSource="{Binding Path=Product.Categories}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"
+                                                       HorizontalAlignment="Center"
+                                                       Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}}" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:Card Padding="10"
+                                                                 Margin="16" Background="Green">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <TextBlock TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke"
+                                                               Text="{Binding}" />
+                                                </StackPanel>
                                             </materialDesign:Card>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
