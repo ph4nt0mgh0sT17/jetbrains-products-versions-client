@@ -1,10 +1,14 @@
-﻿using CommunityToolkit.Diagnostics;
+﻿using System.Diagnostics;
+using CommunityToolkit.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using JetBrainsProductsVersionsClient.Extensions;
+using JetBrainsProductsVersionsClient.Models;
 using JetBrainsProductsVersionsClient.Requests;
 
 namespace JetBrainsProductsVersionsClient.ViewModels;
 
-public class ProductDetailViewModel : ObservableObject
+public partial class ProductDetailViewModel : ObservableObject
 {
     public ProductRequest Product { get; }
 
@@ -12,5 +16,14 @@ public class ProductDetailViewModel : ObservableObject
     {
         Guard.IsNotNull(product, nameof(product));
         Product = product;
+    }
+
+    [ICommand]
+    private void OpenLink(AdditionalLink? additionalLink)
+    {
+        Guard.IsNotNull(additionalLink, nameof(additionalLink));
+        Guard.IsNotNull(additionalLink.Link, nameof(additionalLink.Link));
+
+        ProcessExtensions.OpenDefaultBrowserWithLink(additionalLink.Link);
     }
 }

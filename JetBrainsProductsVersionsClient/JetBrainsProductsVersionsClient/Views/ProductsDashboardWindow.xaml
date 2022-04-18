@@ -63,39 +63,57 @@
             <materialDesign:Card Grid.Row="1" Padding="10"
                                  Margin="16"
                                  Visibility="{Binding Path=AreProductsLoaded, Converter={StaticResource BoolToVisibilityConverter}}">
-                <ListView ItemsSource="{Binding Path=Products}" ScrollViewer.CanContentScroll="True"
-                          HorizontalContentAlignment="Stretch">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <TextBlock Text="{Binding Path=Name}"
-                                           HorizontalAlignment="Left" />
-                                <Button Style="{StaticResource PrimaryButton}"
-                                        HorizontalAlignment="Right"
-                                        Content="Open detail"
-                                        Command="{
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:Card Grid.Row="0" Padding="10" Margin="16" 
+                                         Visibility="{Binding Path=AreProductsEmpty, Converter={StaticResource BoolToVisibilityConverter}}"
+                                         Background="LightBlue">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   TextWrapping="WrapWithOverflow"
+                                   Text="No products are found.">
+                        </TextBlock>
+                    </materialDesign:Card>
+                    <ListView Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Path=Products}" ScrollViewer.CanContentScroll="True"
+                              Visibility="{Binding Path=AreProductsEmpty, Converter={StaticResource ReversedBoolToVisibilityConverter}}"
+                              HorizontalContentAlignment="Stretch">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding Path=Name}"
+                                               HorizontalAlignment="Left" />
+                                    <Button Style="{StaticResource PrimaryButton}"
+                                            HorizontalAlignment="Right"
+                                            Content="Open detail"
+                                            Command="{
                                             Binding Path=ViewModel.OpenProductDetailWindowCommand, 
                                             RelativeSource={
                                                 RelativeSource FindAncestor,
                                                  AncestorType={x:Type Window}
                                             }
                                          }"
-                                        CommandParameter="{Binding}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                            CommandParameter="{Binding}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </materialDesign:Card>
         </Grid>
 
-        <controls:LoadingSpinnerControl
-            Grid.Row="1"
-            LoadingTitle="Loading products information ..."
-            Visibility="{
-                Binding Path=LoadProductsInformationCommand.IsRunning, 
-                Converter={
-                    StaticResource BoolToVisibilityConverter
-                }
-            }" />
+        <Grid Grid.Row="0"
+              Grid.RowSpan="2"
+              Visibility="{
+                    Binding Path=LoadProductsInformationCommand.IsRunning, 
+                    Converter={
+                        StaticResource BoolToVisibilityConverter
+                    }
+              }">
+            <controls:LoadingSpinnerControl
+                LoadingTitle="Loading products information ..."/>
+        </Grid>
+        
     </Grid>
 </Window>

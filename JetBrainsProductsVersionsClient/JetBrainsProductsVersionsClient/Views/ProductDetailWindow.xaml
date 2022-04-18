@@ -29,94 +29,167 @@
                            Text="{Binding Path = Product.Name}"
                            FontSize="25" />
                 <TextBlock TextWrapping="WrapWithOverflow"
+                           Margin="10,0,0,0"
                            Text="- Product detail"
                            FontSize="25" />
             </StackPanel>
         </materialDesign:Card>
 
         <materialDesign:Card Grid.Row="1" Padding="10" Margin="16">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <ContentControl Grid.Row="0" Content="{Binding}" FontSize="15">
-                    <ContentControl.Style>
-                        <Style TargetType="ContentControl">
-                            <Setter Property="ContentTemplate" Value="{StaticResource Desktop_Layout}" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <ContentControl Grid.Row="0" Content="{Binding}" FontSize="15">
+                        <ContentControl.Style>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="ContentTemplate" Value="{StaticResource Desktop_Layout}" />
 
-                            <Style.Triggers>
-                                <DataTrigger
-                                    Binding="{
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{
                                         Binding Path=ActualWidth, 
                                         RelativeSource={RelativeSource AncestorType=Window}, 
                                         Converter={StaticResource IsLessThanOrEqualToConverter}, 
                                         ConverterParameter=600
                                     }"
-                                    Value="True">
-                                    <Setter Property="ContentTemplate" Value="{StaticResource Mobile_Layout}" />
-                                </DataTrigger>
+                                        Value="True">
+                                        <Setter Property="ContentTemplate" Value="{StaticResource Mobile_Layout}" />
+                                    </DataTrigger>
 
-                                <DataTrigger
-                                    Binding="{
+                                    <DataTrigger
+                                        Binding="{
                                         Binding Path=ActualWidth, 
                                         RelativeSource={RelativeSource AncestorType=Window}, 
                                         Converter={StaticResource IsGreaterThanOrEqualToConverter}, 
                                         ConverterParameter=601
                                     }"
-                                    Value="True">
-                                    <Setter Property="ContentTemplate" Value="{StaticResource Desktop_Layout}" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ContentControl.Style>
-                </ContentControl>
-                <materialDesign:Card Grid.Row="1" Padding="10" Margin="16">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Margin="0,0,0,10">
-                            <TextBlock  FontSize="25" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" Text="Releases" />
-                            <Separator />
-                        </StackPanel>
-                        
-                        <ListView Grid.Row="1" ItemsSource="{Binding Path=Product.Releases}"
-                                  ScrollViewer.CanContentScroll="True"
-                                  HorizontalContentAlignment="Stretch">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                            <TextBlock Margin="0,0,10,0"
-                                                       Text="{
+                                        Value="True">
+                                        <Setter Property="ContentTemplate" Value="{StaticResource Desktop_Layout}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
+                    <materialDesign:Card Height="300"
+                                         Padding="10"
+                                         Margin="16">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                                <TextBlock FontSize="25" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"
+                                           Text="Releases" />
+                                <Separator />
+                            </StackPanel>
+
+                            <ListView Grid.Row="1" ItemsSource="{Binding Path=Product.Releases}"
+                                      ScrollViewer.CanContentScroll="True"
+                                      HorizontalContentAlignment="Stretch">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                                <TextBlock Margin="0,0,10,0"
+                                                           Text="{
                                                     Binding Path=ViewModel.Product.Name,
                                                     RelativeSource={RelativeSource FindAncestor, AncestorType=Window}
                                                }" />
-                                            <TextBlock Margin="0,0,10,0"
-                                                       Text="-" />
-                                            <TextBlock Margin="0,0,10,0"
-                                                       Text="{Binding Path=Type}" />
-                                            <TextBlock Margin="0,0,10,0"
-                                                       Text="-" />
-                                            <TextBlock Margin="0,0,10,0"
-                                                       Text="{Binding Path=Date}" />
-                                            <TextBlock Text="(" />
-                                            <TextBlock Text="{Binding Path=Version}" />
-                                            <TextBlock Text=")" />
-                                        </StackPanel>
+                                                <TextBlock Margin="0,0,10,0"
+                                                           Text="-" />
+                                                <TextBlock Margin="0,0,10,0"
+                                                           Text="{Binding Path=Type}" />
+                                                <TextBlock Margin="0,0,10,0"
+                                                           Text="-" />
+                                                <TextBlock Margin="0,0,10,0"
+                                                           Text="{Binding Path=Date}" />
+                                                <TextBlock Text="(" />
+                                                <TextBlock Text="{Binding Path=Version}" />
+                                                <TextBlock Text=")" />
+                                            </StackPanel>
 
-                                        <Button Style="{StaticResource PrimaryButton}"
-                                                HorizontalAlignment="Right"
-                                                Content="Open release detail" />
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Grid>
-                </materialDesign:Card>
-            </Grid>
+                                            <Button Style="{StaticResource PrimaryButton}"
+                                                    HorizontalAlignment="Right"
+                                                    Content="Open release detail" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card Height="300"
+                                         Padding="10"
+                                         Margin="16">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                                <TextBlock FontSize="25" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"
+                                           Text="Additional Links" />
+                                <Separator />
+                            </StackPanel>
+
+                            <ListView Grid.Row="1" ItemsSource="{Binding Path=Product.AdditionalLinks}"
+                                      ScrollViewer.CanContentScroll="True"
+                                      HorizontalContentAlignment="Stretch">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <TextBlock Margin="0,0,10,0"
+                                                       HorizontalAlignment="Left"
+                                                       Text="{Binding Path=Name}" />
+
+                                            <Button Style="{StaticResource PrimaryButton}"
+                                                    HorizontalAlignment="Right"
+                                                    Content="Open link"
+                                                    Command="{
+                                                        Binding Path=ViewModel.OpenLinkCommand, 
+                                                        RelativeSource={
+                                                            RelativeSource FindAncestor, 
+                                                            AncestorType={x:Type Window}
+                                                        }
+                                                    }"
+                                                    CommandParameter="{Binding}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </materialDesign:Card>
+                    <materialDesign:Card Padding="10"
+                                         Margin="16">
+                        <Grid>
+                            <StackPanel Margin="0,0,0,10">
+                                <TextBlock FontSize="25" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"
+                                           Text="Tags" />
+                                <Separator />
+
+                                <ItemsControl ItemsSource="{Binding Path=Product.Tags}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"
+                                                       HorizontalAlignment="Center"
+                                                       Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}}" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:Card Padding="10"
+                                                                 Margin="16" Background="Green">
+                                                <TextBlock TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke"
+                                                           Text="{Binding Path=Name}" />
+                                            </materialDesign:Card>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                </StackPanel>
+            </ScrollViewer>
         </materialDesign:Card>
     </Grid>
 </Window>

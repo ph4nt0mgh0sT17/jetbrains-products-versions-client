@@ -15,15 +15,16 @@ namespace JetBrainsProductsVersionsClient.ViewModels;
 
 public partial class ProductsDashboardViewModel : ObservableObject
 {
-    [ObservableProperty] private ObservableCollection<ProductRequest> _products = new();
+    [ObservableProperty] [AlsoNotifyChangeFor(nameof(AreProductsEmpty))]
+    private ObservableCollection<ProductRequest> _products = new();
 
-    [ObservableProperty] private string? productName = "";
+    [ObservableProperty] private string? _productName = "";
+    [ObservableProperty] private bool _areProductsLoaded;
 
     private List<ProductRequest>? products;
-
-    [ObservableProperty] private bool areProductsLoaded;
-
     private readonly IJetBrainsApiService _jetBrainsApiService;
+
+    public bool AreProductsEmpty => Products.Count == 0;
 
     public ProductsDashboardViewModel(IJetBrainsApiService jetBrainsApiService)
     {
