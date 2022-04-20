@@ -51,7 +51,6 @@ public partial class ProductsDashboardViewModel : ObservableObject
     private async Task LoadProductsInformation()
     {
         var jetBrainsProducts = await _jetBrainsApiService.RetrieveAllProductsAsync();
-
         _logger.LogInformation("JetBrains products are successfully loaded");
 
         _allJetBrainsProducts = new List<ProductRequest>(jetBrainsProducts);
@@ -83,8 +82,15 @@ public partial class ProductsDashboardViewModel : ObservableObject
         else
         {
             var filteredProducts = _allJetBrainsProducts
-                .Where(x => x.Name!.Contains(productName, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                .Where(currentProduct => ProductContainsProductName(productName, currentProduct))
+                .ToList();
+            
             Products = new ObservableCollection<ProductRequest>(filteredProducts);
         }
+    }
+
+    private static bool ProductContainsProductName(string productName, ProductRequest product)
+    {
+        return product.Name!.Contains(productName, StringComparison.CurrentCultureIgnoreCase);
     }
 }

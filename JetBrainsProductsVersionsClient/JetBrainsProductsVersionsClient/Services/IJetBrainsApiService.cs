@@ -11,11 +11,4 @@ public interface IJetBrainsApiService
     /// </summary>
     /// <returns>The <see cref="List{T}"/> of all <see cref="ProductRequest"/></returns>
     Task<List<ProductRequest>> RetrieveAllProductsAsync();
-
-    /// <summary>
-    /// Retrieves certain JetBrains product.
-    /// </summary>
-    /// <param name="productFilterRequest">The request for filtering product request.</param>
-    /// <returns>The <see cref="List{T}"/> of all <see cref="ProductRequest"/></returns>
-    Task<List<ProductRequest>> RetrieveProductAsync(ProductFilterRequest productFilterRequest);
 }
