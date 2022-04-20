@@ -35,9 +35,4 @@ public class JetBrainsApiService : IJetBrainsApiService
             BaseAddress = new Uri("https://data.services.jetbrains.com/")
         };
     }
-
-    public async Task<List<ProductRequest>> RetrieveProductAsync(ProductFilterRequest productFilterRequest)
-    {
-        throw new NotImplementedException();
-    }
 }
