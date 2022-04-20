@@ -25,6 +25,7 @@ namespace JetBrainsProductsVersionsClient
         private static IServiceProvider ConfigureServices()
         {
             return new ServiceCollection()
+                .AddLogger()
                 .AddAllRepositories()
                 .AddAllServices()
                 .AddAllViewModels()

@@ -15,7 +15,7 @@ public partial class ProductDetailWindow : Window
         InitializeComponent();
         DataContext = new ProductDetailViewModel(product);
     }
-    
+
     public ProductDetailViewModel ViewModel
     {
         get

@@ -11,6 +11,7 @@ namespace JetBrainsProductsVersionsClient.Services;
 public class JetBrainsApiService : IJetBrainsApiService
 {
     private readonly HttpClient _httpClient;
+
     public JetBrainsApiService()
     {
         _httpClient = CreateJetBrainsDataServiceHttpClient();
@@ -23,7 +24,7 @@ public class JetBrainsApiService : IJetBrainsApiService
 
         Guard.IsNotNull(jsonText, nameof(jsonText));
 
-        return JsonSerializer.Deserialize<List<ProductRequest>>(jsonText) ?? 
+        return JsonSerializer.Deserialize<List<ProductRequest>>(jsonText) ??
                throw new InvalidOperationException("The products cannot be null.");
     }
 

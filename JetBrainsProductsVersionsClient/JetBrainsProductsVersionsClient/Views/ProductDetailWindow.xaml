@@ -86,33 +86,18 @@
 
                             <ListView Grid.Row="1" ItemsSource="{Binding Path=Product.Releases}"
                                       ScrollViewer.CanContentScroll="True"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                       HorizontalContentAlignment="Stretch">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid>
-                                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                                <TextBlock Margin="0,0,10,0"
-                                                           Text="{
-                                                    Binding Path=ViewModel.Product.Name,
-                                                    RelativeSource={RelativeSource FindAncestor, AncestorType=Window}
-                                               }" />
-                                                <TextBlock Margin="0,0,10,0"
-                                                           Text="-" />
-                                                <TextBlock Margin="0,0,10,0"
-                                                           Text="{Binding Path=Type}" />
-                                                <TextBlock Margin="0,0,10,0"
-                                                           Text="-" />
-                                                <TextBlock Margin="0,0,10,0"
-                                                           Text="{Binding Path=Date}" />
-                                                <TextBlock Text="(" />
-                                                <TextBlock Text="{Binding Path=Version}" />
-                                                <TextBlock Text=")" />
-                                            </StackPanel>
-
-                                            <Button Style="{StaticResource PrimaryButton}"
-                                                    HorizontalAlignment="Right"
-                                                    Content="Open release detail" />
-                                        </Grid>
+                                        <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Left">
+                                            <Run Text="{Binding Path=Type}" />
+                                            <Run Text=" - " />
+                                            <Run Text="{Binding Path=Date}" />
+                                            <Run Text=" (" />
+                                            <Run Text="{Binding Path=Version}" />
+                                            <Run Text=")" />
+                                        </TextBlock>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>

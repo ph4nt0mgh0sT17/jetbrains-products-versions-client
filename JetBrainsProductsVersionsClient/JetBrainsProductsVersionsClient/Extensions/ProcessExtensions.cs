@@ -11,7 +11,7 @@ public static class ProcessExtensions
     /// </summary>
     /// <param name="link">A link to be opened.</param>
     /// <exception cref="InvalidOperationException">If browser cannot be open.</exception>
-    public static void OpenDefaultBrowserWithLink(string? link)
+    public static void OpenDefaultBrowserWithLink(this string? link)
     {
         Guard.IsNotNull(link, nameof(link));
 

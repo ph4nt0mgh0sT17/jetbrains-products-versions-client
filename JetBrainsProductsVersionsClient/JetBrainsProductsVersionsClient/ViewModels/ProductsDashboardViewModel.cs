@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.Input;
 using JetBrainsProductsVersionsClient.Requests;
 using JetBrainsProductsVersionsClient.Services;
 using JetBrainsProductsVersionsClient.Views;
+using Microsoft.Extensions.Logging;
 
 namespace JetBrainsProductsVersionsClient.ViewModels;
 
@@ -18,25 +19,29 @@ public partial class ProductsDashboardViewModel : ObservableObject
     [ObservableProperty] [AlsoNotifyChangeFor(nameof(AreProductsEmpty))]
     private ObservableCollection<ProductRequest> _products = new();
 
-    [ObservableProperty] private string? _productName = "";
-    [ObservableProperty] private bool _areProductsLoaded;
+    [ObservableProperty]
+    private string _productName = "";
 
-    private List<ProductRequest>? products;
+    [ObservableProperty]
+    private bool _areProductsLoaded;
+
+    private List<ProductRequest> _allJetBrainsProducts = new();
+
     private readonly IJetBrainsApiService _jetBrainsApiService;
+    private readonly ILogger<ProductsDashboardViewModel> _logger;
 
     public bool AreProductsEmpty => Products.Count == 0;
 
-    public ProductsDashboardViewModel(IJetBrainsApiService jetBrainsApiService)
+    public ProductsDashboardViewModel(IJetBrainsApiService jetBrainsApiService,
+        ILogger<ProductsDashboardViewModel> logger)
     {
         _jetBrainsApiService = jetBrainsApiService;
+        _logger = logger;
     }
 
-    protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+    partial void OnProductNameChanged(string productName)
     {
-        base.OnPropertyChanged(e);
-
-        if (e.PropertyName == nameof(ProductName))
-            FilterProducts();
+        FilterProducts(productName);
     }
 
     /// <summary>
@@ -46,7 +51,10 @@ public partial class ProductsDashboardViewModel : ObservableObject
     private async Task LoadProductsInformation()
     {
         var jetBrainsProducts = await _jetBrainsApiService.RetrieveAllProductsAsync();
-        products = new List<ProductRequest>(jetBrainsProducts);
+
+        _logger.LogInformation("JetBrains products are successfully loaded");
+
+        _allJetBrainsProducts = new List<ProductRequest>(jetBrainsProducts);
         Products = new ObservableCollection<ProductRequest>(jetBrainsProducts);
         AreProductsLoaded = true;
     }
@@ -65,17 +73,17 @@ public partial class ProductsDashboardViewModel : ObservableObject
     /// Filter products everytime the <see cref="ProductName"/> is changed in the UI.
     /// Also displays all products if <see cref="ProductName"/> is empty or null.
     /// </summary>
-    private void FilterProducts()
+    private void FilterProducts(string productName)
     {
-        if (string.IsNullOrEmpty(ProductName))
+        if (productName == "")
         {
-            Products = new ObservableCollection<ProductRequest>(products);
+            Products = new ObservableCollection<ProductRequest>(_allJetBrainsProducts);
         }
 
         else
         {
-            var filteredProducts = products
-                .Where(x => x.Name.Contains(ProductName, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            var filteredProducts = _allJetBrainsProducts
+                .Where(x => x.Name!.Contains(productName, StringComparison.CurrentCultureIgnoreCase)).ToList();
             Products = new ObservableCollection<ProductRequest>(filteredProducts);
         }
     }

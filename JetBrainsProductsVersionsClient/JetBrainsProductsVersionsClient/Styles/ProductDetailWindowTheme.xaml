@@ -30,7 +30,8 @@
                         <ColumnDefinition Width="7*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Product family name:" TextWrapping="WrapWithOverflow" />
-                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.ProductFamilyName}" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.ProductFamilyName}"
+                               TextWrapping="WrapWithOverflow" />
                 </Grid>
             </StackPanel>
             <StackPanel Grid.Column="1"
@@ -41,7 +42,8 @@
                         <ColumnDefinition Width="7*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Description:" TextWrapping="WrapWithOverflow" />
-                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.Description}" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.Description}"
+                               TextWrapping="WrapWithOverflow" />
                 </Grid>
 
                 <Grid Margin="0, 0, 0, 10">
@@ -85,7 +87,8 @@
                         <ColumnDefinition Width="5*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Product family name:" TextWrapping="WrapWithOverflow" />
-                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.ProductFamilyName}" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.ProductFamilyName}"
+                               TextWrapping="WrapWithOverflow" />
                 </Grid>
 
                 <Grid Margin="0, 0, 0, 10">
@@ -94,7 +97,8 @@
                         <ColumnDefinition Width="5*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Description:" TextWrapping="WrapWithOverflow" />
-                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.Description}" TextWrapping="WrapWithOverflow" />
+                    <TextBlock Grid.Column="1" Text="{Binding Path=Product.Description}"
+                               TextWrapping="WrapWithOverflow" />
                 </Grid>
 
                 <Grid Margin="0, 0, 0, 10">

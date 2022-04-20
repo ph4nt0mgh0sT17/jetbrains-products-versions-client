@@ -10,12 +10,12 @@
              d:DataContext="{d:DesignInstance Type=local:LoadingSpinnerControl, IsDesignTimeCreatable=True}">
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock FontSize="25" 
+            <TextBlock FontSize="25"
                        TextWrapping="WrapWithOverflow"
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" 
-                       Margin="30" 
-                       Text="{Binding Path=LoadingTitle}"/>
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="30"
+                       Text="{Binding Path=LoadingTitle}" />
 
             <fa:ImageAwesome Icon="CircleOutlineNotch" Width="50" Spin="True" SpinDuration="4" />
         </StackPanel>

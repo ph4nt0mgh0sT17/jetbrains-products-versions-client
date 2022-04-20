@@ -12,7 +12,7 @@ public class ProductFilterRequest
     {
         Guard.IsNotNull(productCode, nameof(productCode));
         Guard.IsNotNull(releaseType, nameof(releaseType));
-            
+
         ProductCode = productCode;
         ReleaseType = releaseType;
     }

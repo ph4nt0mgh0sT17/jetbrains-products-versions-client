@@ -5,13 +5,13 @@
         <Setter Property="BorderBrush" Value="OrangeRed" />
         <Setter Property="Foreground" Value="WhiteSmoke" />
     </Style>
-    
+
     <Style x:Key="SecondaryButton" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}" TargetType="Button">
         <Setter Property="Background" Value="Green" />
         <Setter Property="BorderBrush" Value="Green" />
         <Setter Property="Foreground" Value="WhiteSmoke" />
     </Style>
-    
+
     <Style x:Key="PrimaryButton" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}" TargetType="Button">
         <Setter Property="Background" Value="#0d6efd" />
         <Setter Property="BorderBrush" Value="#0d6efd" />

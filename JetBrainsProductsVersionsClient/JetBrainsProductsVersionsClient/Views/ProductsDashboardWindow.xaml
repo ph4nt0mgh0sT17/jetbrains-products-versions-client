@@ -67,9 +67,9 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <materialDesign:Card Grid.Row="0" Padding="10" Margin="16" 
+                    <materialDesign:Card Grid.Row="0" Padding="10" Margin="16"
                                          Visibility="{Binding Path=AreProductsEmpty, Converter={StaticResource BoolToVisibilityConverter}}"
                                          Background="LightBlue">
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -77,7 +77,8 @@
                                    Text="No products are found.">
                         </TextBlock>
                     </materialDesign:Card>
-                    <ListView Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Path=Products}" ScrollViewer.CanContentScroll="True"
+                    <ListView Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Path=Products}"
+                              ScrollViewer.CanContentScroll="True"
                               Visibility="{Binding Path=AreProductsEmpty, Converter={StaticResource ReversedBoolToVisibilityConverter}}"
                               HorizontalContentAlignment="Stretch">
                         <ListView.ItemTemplate>
@@ -113,8 +114,8 @@
                     }
               }">
             <controls:LoadingSpinnerControl
-                LoadingTitle="Loading products information ..."/>
+                LoadingTitle="Loading products information ..." />
         </Grid>
-        
+
     </Grid>
 </Window>

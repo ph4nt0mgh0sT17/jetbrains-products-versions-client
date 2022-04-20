@@ -12,7 +12,7 @@ public class Mac
     public string? Link { get; set; }
 
     [JsonPropertyName("size")]
-    public int Size { get; set;  }
+    public int Size { get; set; }
 
     [JsonPropertyName("checksumLink")]
     public string? ChecksumLink { get; set; }

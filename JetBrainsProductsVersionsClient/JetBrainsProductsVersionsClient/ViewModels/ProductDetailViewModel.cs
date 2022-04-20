@@ -24,6 +24,6 @@ public partial class ProductDetailViewModel : ObservableObject
         Guard.IsNotNull(additionalLink, nameof(additionalLink));
         Guard.IsNotNull(additionalLink.Link, nameof(additionalLink.Link));
 
-        ProcessExtensions.OpenDefaultBrowserWithLink(additionalLink.Link);
+        additionalLink.Link.OpenDefaultBrowserWithLink();
     }
 }

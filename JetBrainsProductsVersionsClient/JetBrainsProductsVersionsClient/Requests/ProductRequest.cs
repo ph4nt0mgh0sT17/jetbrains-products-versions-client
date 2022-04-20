@@ -47,7 +47,7 @@ public class ProductRequest
 
     [JsonPropertyName("categories")]
     public List<string?>? Categories { get; set; }
-    
+
     [JsonPropertyName("distributions")]
     public Dictionary<string, Distribution>? Distributions { get; set; }
 }

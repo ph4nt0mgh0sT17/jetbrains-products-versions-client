@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace JetBrainsProductsVersionsClient.Converters;
 
-public class ReversedBoolToVisibilityConverter: IValueConverter
+public class ReversedBoolToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
