@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace JetBrainsProductsVersionsClient.Models;
 
@@ -18,6 +19,9 @@ public class Release
 
     [JsonPropertyName("patches")]
     public Patches? Patches { get; set; }
+    
+    [JsonPropertyName("downloads")]
+    public Dictionary<string, Download>? Downloads { get; set; }
 
     [JsonPropertyName("notesLink")]
     public string? NotesLink { get; set; }

@@ -20,4 +20,13 @@
         <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Images" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Images\shrug.jpg" />
+      <Resource Include="Images\shrug.jpg" />
+    </ItemGroup>
+
 </Project>

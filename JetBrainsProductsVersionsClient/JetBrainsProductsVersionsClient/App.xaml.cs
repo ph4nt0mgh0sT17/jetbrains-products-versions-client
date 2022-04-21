@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using JetBrainsProductsVersionsClient.Extensions;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,9 +21,10 @@ namespace JetBrainsProductsVersionsClient
         public App()
         {
             Ioc.Default.ConfigureServices(ConfigureServices());
+            ToolTipServiceExtensions.SetupToolTipService();
         }
 
-        private static IServiceProvider ConfigureServices()
+        private IServiceProvider ConfigureServices()
         {
             return new ServiceCollection()
                 .AddLogger()

@@ -39,7 +39,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
-                    <ContentControl Grid.Row="0" Content="{Binding}" FontSize="15">
+                    <ContentControl Content="{Binding}" FontSize="15">
                         <ContentControl.Style>
                             <Style TargetType="ContentControl">
                                 <Setter Property="ContentTemplate" Value="{StaticResource Desktop_Layout}" />
@@ -90,14 +90,27 @@
                                       HorizontalContentAlignment="Stretch">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Left">
-                                            <Run Text="{Binding Path=Type}" />
-                                            <Run Text=" - " />
-                                            <Run Text="{Binding Path=Date}" />
-                                            <Run Text=" (" />
-                                            <Run Text="{Binding Path=Version}" />
-                                            <Run Text=")" />
-                                        </TextBlock>
+                                        <Grid>
+                                            <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Left">
+                                                <Run Text="{Binding Path=Type}" />
+                                                <Run Text=" - " />
+                                                <Run Text="{Binding Path=Date}" />
+                                                <Run Text=" (" />
+                                                <Run Text="{Binding Path=Version}" />
+                                                <Run Text=")" />
+                                            </TextBlock>
+                                            <Button
+                                                Command="{
+                                                    Binding Path=ViewModel.OpenReleaseDetailCommand, 
+                                                    RelativeSource={
+                                                        RelativeSource FindAncestor, 
+                                                        AncestorType={x:Type Window}
+                                                }}"
+                                                CommandParameter="{Binding}"
+                                                Content="Open release detail"
+                                                Style="{StaticResource PrimaryButton}"
+                                                HorizontalAlignment="Right" />
+                                        </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
