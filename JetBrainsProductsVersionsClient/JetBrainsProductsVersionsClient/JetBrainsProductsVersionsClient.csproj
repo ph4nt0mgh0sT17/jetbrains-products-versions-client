@@ -21,12 +21,22 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Images" />
+        <Folder Include="Images" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Images\shrug.jpg" />
-      <Resource Include="Images\shrug.jpg" />
+        <None Remove="Images\shrug.jpg" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Images\yikes.jpg" />
+        <Resource Include="Images\yikes.jpg">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Images\yikes.gif" />
     </ItemGroup>
 
 </Project>

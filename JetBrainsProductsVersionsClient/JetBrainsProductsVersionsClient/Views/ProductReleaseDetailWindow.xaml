@@ -99,10 +99,10 @@
                                         Command="{Binding Path=DownloadReleaseCommand}">
                                     <Button.ToolTip>
                                         <ToolTip>
-                                            <DockPanel>
-                                                <Image Source="/Images/shrug.jpg" />
-                                                <TextBlock>Release cannot be downloaded. The feature is not yet implemented.</TextBlock>
-                                            </DockPanel>
+                                            <StackPanel Orientation="Vertical">
+                                                <Image Source="/Images/yikes.jpg"/>
+                                                <TextBlock FontSize="15">Release cannot be downloaded. The feature is not yet implemented.</TextBlock>
+                                            </StackPanel>
                                         </ToolTip>
                                     </Button.ToolTip>
                                 </Button>
