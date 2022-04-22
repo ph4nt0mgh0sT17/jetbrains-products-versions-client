@@ -8,16 +8,35 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.0.0-preview3"/>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3"/>
-        <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9"/>
-        <PackageReference Include="MaterialDesignThemes" Version="4.4.0"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0"/>
-        <PackageReference Include="Serilog.AspNetCore" Version="5.0.0"/>
-        <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1"/>
-        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
+        <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.0.0-preview3" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+        <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+        <PackageReference Include="MaterialDesignThemes" Version="4.4.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Images" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Images\shrug.jpg" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Images\yikes.jpg" />
+        <Resource Include="Images\yikes.jpg">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Images\yikes.gif" />
     </ItemGroup>
 
 </Project>

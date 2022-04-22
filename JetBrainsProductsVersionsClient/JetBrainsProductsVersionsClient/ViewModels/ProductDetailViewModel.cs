@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using JetBrainsProductsVersionsClient.Extensions;
 using JetBrainsProductsVersionsClient.Models;
 using JetBrainsProductsVersionsClient.Requests;
+using JetBrainsProductsVersionsClient.Views;
 using Microsoft.Extensions.Logging;
 
 namespace JetBrainsProductsVersionsClient.ViewModels;
@@ -30,6 +31,14 @@ public partial class ProductDetailViewModel : ObservableObject
         Guard.IsNotNull(additionalLink.Link, nameof(additionalLink.Link));
 
         TryOpenDefaultBrowserWithLink(additionalLink);
+    }
+    
+    [ICommand]
+    private void OpenReleaseDetail(Release? release)
+    {
+        Guard.IsNotNull(release, nameof(release));
+
+        new ProductReleaseDetailWindow(release).ShowDialog();
     }
 
     private void TryOpenDefaultBrowserWithLink(AdditionalLink additionalLink)
